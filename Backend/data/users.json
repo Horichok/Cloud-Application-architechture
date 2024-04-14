@@ -1,0 +1,19 @@
+[
+    {
+        "id": 3,
+        "name": "jeff",
+        "carts": []
+    },
+    {
+        "id": 2,
+        "name": "john",
+        "carts": []
+    },
+    {
+        "id": 1,
+        "name": "nicolas",
+        "carts": [
+            1003
+        ]
+    }
+]
