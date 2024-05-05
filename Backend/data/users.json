@@ -1,1 +1,1 @@
-[{"id":2,"username":"Wick","carts":[2003],"password":"$2b$10$KLlW3HkeJZEbsb.kCFXr2.9x6KBwrGU.HI30r4up2dR7Behthr84O"},{"id":1,"username":"John","carts":[1001,1002,1004],"password":"$2b$10$SjeSHwWTJZ43gG9b3tvsdOYHB72swnKIIQ3PRKiYMI/1QxgkhsOZq"}]
+[{"id":2,"username":"Wick","carts":[],"password":"$2b$10$hYvivNK0IE42LRzWzkCN0.0D6190/xdmaf6QGdMFu125Jkfi9ZyY2","collaborations":[1001,1001]},{"id":1,"username":"John","carts":[],"password":"$2b$10$wNQJz/zv//leeEWaOYsXKumYm/A7EpPofTCpbQZMpozTj2V9qQw0m","collaborations":[]}]

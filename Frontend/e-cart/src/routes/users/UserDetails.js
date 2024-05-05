@@ -34,8 +34,9 @@ function UserDetails() {
   };
 
   const isCollaborator = (cart) => {
-    return cart.userId !== parseInt(userId) && cart.collaborators && cart.collaborators.includes(parseInt(userId));
+    return cart && cart.userId !== null && cart.userId !== parseInt(userId) && cart.collaborators && cart.collaborators.includes(parseInt(userId));
   };
+  
 
   return (
     <div className="container">

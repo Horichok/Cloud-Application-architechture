@@ -19,7 +19,7 @@ router.post('/create', cartController.createCart);
 router.get('/all', cartController.getAllCarts);
 router.get('/:id', cartController.getCartById);
 router.put('/:id/update', cartController.updateCart);
-router.delete('/:id/del', cartController.deleteCart);
+router.delete('/:cartId/del', cartController.deleteCart);
 router.post('/share', cartController.shareCart);
 
 

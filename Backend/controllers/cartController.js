@@ -103,43 +103,94 @@ exports.updateCart = async (req, res) => {
     res.json(carts[cartIndex]);
     await dml.saveCarts(carts);
 };
-
 exports.deleteCart = async (req, res) => {
-    const cartId = parseInt(req.params.id);
-    const carts = await dml.readCarts();
-    const cartIndex = carts.findIndex(cart => cart.id === cartId);
-    if (cartIndex === -1) {
+    try {
+      const carts = await dml.readCarts();
+      const users = await dml.readUsers();
+      const cartId = await  parseInt(req.params.cartId);
+      
+      console.log(cartId);
+      // Validate cartId
+      if (isNaN(cartId)) {
+        return res.status(400).json({ message: 'Invalid cartId' });
+      }
+  
+      // Find the index of the cart to be deleted
+      const cartIndex = carts.findIndex((cart) => cart.id === cartId);
+        console.log(cartId);
+      if (cartIndex === -1) {
         return res.status(404).json({ message: 'Cart not found' });
+      }
+  
+      // Get the owner's ID of the cart to be deleted
+      const ownerId = carts[cartIndex].userId;
+  
+      // Remove the cart from the carts array
+      const deletedCart = carts.splice(cartIndex, 1)[0];
+  
+      // Remove the deleted cart from the owner's carts list
+      const ownerIndex = users.findIndex((user) => user.id === ownerId);
+      if (ownerIndex !== -1) {
+        const cartIndexInOwner = users[ownerIndex].carts.indexOf(cartId);
+        if (cartIndexInOwner !== -1) {
+          users[ownerIndex].carts.splice(cartIndexInOwner, 1);
+        }
+      }
+  
+      // Save the modified carts and users lists
+      await dml.saveCarts(carts);
+      await dml.saveUsers(users);
+  
+      res.status(200).json({ message: 'Cart deleted successfully', deletedCart });
+    } catch (error) {
+      console.error('Error deleting cart:', error);
+      res.status(500).json({ message: 'Internal server error' });
     }
-    carts.splice(cartIndex, 1);
-    res.json(carts);
-    await dml.saveCarts(carts);
-};
+  };
+  
 
 exports.shareCart = async (req, res) => {
     try {
-        const { cartId, userId } = req.body
+        const { cartId, userId } = req.body;
         const carts = await dml.readCarts();
         const users = await dml.readUsers();
+
+        // Log the received data for debugging
+        console.log('Received data:', { cartId, userId });
 
         const cartIndex = carts.findIndex(cart => cart.id === cartId);
         const userIndex = users.findIndex(user => user.id === userId);
 
-        if (cartIndex === -1) {
-            throw new Error('Cart not found');
+        // Log the found indexes for debugging
+        console.log('Cart index:', cartIndex);
+        console.log('User index:', userIndex);
+
+        if (cartIndex === -1 || userIndex === -1) {
+            throw new Error('Cart or User not found');
         }
-        if (userIndex === -1) {
-            throw new Error('Cart not found');
+
+        // Check if carts[cartIndex] has the collaborators property
+        if (!carts[cartIndex].collaborators) {
+            carts[cartIndex].collaborators = []; // Initialize if it doesn't exist
         }
 
         carts[cartIndex].collaborators.push(userId);
+
+        // Check if users[userIndex] has the collaborations property
+        if (!users[userIndex].collaborations) {
+            users[userIndex].collaborations = []; // Initialize if it doesn't exist
+        }
+
         users[userIndex].collaborations.push(cartId);
+
         await dml.saveCarts(carts);
         await dml.saveUsers(users);
+
         res.json(carts);
         return { message: 'User added to cart successfully' };
     } catch (error) {
-        throw new Error(`Error while adding User to cart: ${error.message}`);
+        console.error(`Error while adding User to cart: ${error.message}`);
+        res.status(500).json({ error: 'Internal server error' });
     }
 };
 
