@@ -1,0 +1,101 @@
+/* Style for the container */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Style for the heading */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Style for the cart details */
+.cart-details {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Style for the product list */
+.product-list {
+  margin-bottom: 20px;
+}
+
+/* Style for the product block */
+.product-block {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Style for the delete button */
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Style for the error message */
+.error-message {
+  color: red;
+}
+
+/* Style for the modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.modal-content button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.modal-content button:hover {
+  background-color: #0056b3;
+}

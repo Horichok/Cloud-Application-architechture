@@ -62,6 +62,7 @@ exports.addProductToCart = async (req, res) => {
 
         // Trouver le panier avec l'ID spécifié
         const cartIndex = carts.findIndex(cart => cart.id === cartId);
+        console.log(cartId);
         if (cartIndex === -1) {
             throw new Error('Cart not found');
         }
@@ -119,18 +120,46 @@ exports.shareCart = async (req, res) => {
     try {
         const { cartId, userId } = req.body
         const carts = await dml.readCarts();
+        const users = await dml.readUsers();
 
         const cartIndex = carts.findIndex(cart => cart.id === cartId);
+        const userIndex = users.findIndex(user => user.id === userId);
+
         if (cartIndex === -1) {
+            throw new Error('Cart not found');
+        }
+        if (userIndex === -1) {
             throw new Error('Cart not found');
         }
 
         carts[cartIndex].collaborators.push(userId);
-
+        users[userIndex].collaborations.push(cartId);
         await dml.saveCarts(carts);
+        await dml.saveUsers(users);
         res.json(carts);
         return { message: 'User added to cart successfully' };
     } catch (error) {
         throw new Error(`Error while adding User to cart: ${error.message}`);
     }
 };
+
+
+exports.deleteProduct = async(req,res)=>{
+    const carts = await dml.readCarts();
+    const cartId = parseInt(req.params.cartId);
+  const productId = parseInt(req.params.productId);
+  // Find the cart by ID
+  const cart = carts.find(cart => cart.id === cartId);
+  if (!cart) {
+    return res.status(404).json({ message: 'Cart not found' });
+  }
+  // Find the index of the product in the cart's products array
+  const index = cart.products.findIndex(id => id === productId);
+  if (index === -1) {
+    return res.status(404).json({ message: 'Product not found in the cart' });
+  }
+  // Remove the product from the cart's products array
+  cart.products.splice(index, 1);
+  await dml.saveCarts(carts);
+  res.status(200).json({ message: 'Product removed from cart successfully' });
+}

@@ -10,6 +10,7 @@ const cartController = require('../controllers/cartController');
 
 // Route to add a product to a cart
 router.get('/:cartId/products', cartController.getProducts);
+router.delete('/:cartId/products/:productId',cartController.deleteProduct);
 
 
 // Define routes
@@ -20,5 +21,6 @@ router.get('/:id', cartController.getCartById);
 router.put('/:id/update', cartController.updateCart);
 router.delete('/:id/del', cartController.deleteCart);
 router.post('/share', cartController.shareCart);
+
 
 module.exports = router;

@@ -1,9 +1,19 @@
 
 class User {
-    constructor(id, name) {
+    constructor(id, username,password) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.carts = [];
+        this.password = password;
+        this.collaborations = [];
+    }
+
+    addCollaboration(cart){
+        this.collaborations.push(cart);
+    }
+
+    removeCollaboration(cartId) {
+        this.collaborations = this.collaborations.filter(cart => cart.id !== cartId);
     }
 
     addCart(cart) {

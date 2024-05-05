@@ -1,0 +1,43 @@
+/* AllUser.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .user-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .user-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .user-name {
+    font-weight: bold;
+  }
+  
+  .view-details-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .view-details-btn:hover {
+    background-color: #0056b3;
+  }
+  

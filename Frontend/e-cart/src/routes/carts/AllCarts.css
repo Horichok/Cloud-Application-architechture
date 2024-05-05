@@ -1,0 +1,63 @@
+/* Style for the container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Style for the heading */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the create button */
+  .create-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .create-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the cart list */
+  .cart-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Style for each cart item */
+  .cart-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  /* Style for cart name */
+  .cart-name {
+    font-weight: bold;
+  }
+  
+  /* Style for cart owner */
+  .cart-owner {
+    font-style: italic;
+  }
+  
+  /* Style for the detail link */
+  .detail-link {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 10px;
+  }
+  
+  .detail-link:hover {
+    text-decoration: underline;
+  }
+  

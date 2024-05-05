@@ -45,14 +45,28 @@ exports.updateProduct = async (req, res) => {
 };
 
 exports.deleteProduct = async (req, res) => {
-    const products = await dml.readProducts();
     const productId = parseInt(req.params.id);
+    
+    // Remove the product from all carts
+    const carts = await dml.readCarts();
+    carts.forEach(cart => {
+        let index;
+        while ((index = cart.products.indexOf(productId)) !== -1) {
+            cart.products.splice(index, 1);
+        }
+    });
+    await dml.saveCarts(carts);
+
+    // Remove the product from the list of products
+    const products = await dml.readProducts();
     const productIndex = products.findIndex(product => product.id === productId);
     if (productIndex === -1) {
         return res.status(404).json({ message: 'Product not found' });
     }
     products.splice(productIndex, 1);
-    res.json(products);
-    await dml.saveProducts(products)
+    await dml.saveProducts(products);
 
+    res.json(products);
 };
+
+

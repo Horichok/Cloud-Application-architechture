@@ -1,0 +1,35 @@
+/* Home.css */
+
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .presentation {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .presentation h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .presentation p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .welcome {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .welcome h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  

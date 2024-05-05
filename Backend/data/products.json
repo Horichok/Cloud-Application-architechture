@@ -1,17 +1,1 @@
-[
-    {
-        "id": 3,
-        "name": "salmon",
-        "price": 7.99
-    },
-    {
-        "id": 2,
-        "name": "bread",
-        "price": "0.99"
-    },
-    {
-        "id": 1,
-        "name": "chips",
-        "price": 9.99
-    }
-]
+[{"id":1,"name":"Bread","price":0.99}]
